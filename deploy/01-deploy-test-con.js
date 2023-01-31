@@ -8,7 +8,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     log(`Deploying TestCon...`)
     arguments = []
-    const testConDeploy = await deploy("TestCon", { from: deployer, args: arguments, log: true, waitConfirmations: 1 })
+    await deploy("TestCon", { from: deployer, args: arguments, log: true, waitConfirmations: 1 })
     const testCon = await ethers.getContract("TestCon", deployer)
 
     // Using Contract Functions:
