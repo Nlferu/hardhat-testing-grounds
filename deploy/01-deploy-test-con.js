@@ -20,8 +20,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     emitNumberTwo = receiptTx.events[1].args.passedNumTwo
     emitAddress = receiptTx.events[0].args.addressOne
     emitBool = receiptTx.events[1].args.initialize
-    log(`First Event Data: numberOne ${emitNumberOne} address ${emitAddress}`)
-    log(`Second Event Data: numberTwo ${emitNumberTwo} bool ${emitBool}`)
+    log(`First Event Data -> numberOne: ${emitNumberOne} address: ${emitAddress}`)
+    log(`Second Event Data -> numberTwo: ${emitNumberTwo} bool: ${emitBool}`)
 }
 
 module.exports.tags = ["all", "deploy"]
