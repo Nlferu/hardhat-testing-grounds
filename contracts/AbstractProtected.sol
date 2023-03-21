@@ -20,4 +20,12 @@ contract AbstractProtected is ReentrancyGuard {
         // before user's balance could have been set to 0
         balances[msg.sender] = 0;
     }
+
+    // INSTEAD OF OPENZEPPELIN LIBRARY WE CAN USE BELOW:
+    // modifier nonReentrant() {
+    //     require(!locked, "No re-entrancy");
+    //     locked = true;
+    //     _;
+    //     locked = false;
+    // }
 }
