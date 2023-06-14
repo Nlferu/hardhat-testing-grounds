@@ -24,4 +24,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log(`Second Event Data -> numberTwo: ${emitNumberTwo} bool: ${emitBool}`)
 }
 
-module.exports.tags = ["all", "deploy"]
+module.exports.tags = ["all", "test"]
