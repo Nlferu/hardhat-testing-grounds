@@ -4,6 +4,7 @@ pragma solidity ^0.8.8;
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract AbstractProtected is ReentrancyGuard {
+    //bool private locked;
     mapping(address => uint) public balances;
 
     // Update the `balances` mapping to include the new ETH deposited by msg.sender
