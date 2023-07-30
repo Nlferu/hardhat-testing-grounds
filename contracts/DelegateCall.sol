@@ -28,18 +28,44 @@ contract A {
     }
 }
 
+/// @dev Try below in Remix
+
 contract CallAnything {
     address public s_someAddress;
     uint256 public s_amount;
 
-    function transfer(address someAddress, uint256 amount) public {
+    function transfer(address someAddress, uint256 amount) public returns (string memory) {
         s_someAddress = someAddress;
         s_amount = amount;
+
+        string memory message = "Transfer Performed!";
+        return message;
     }
 
-    function getSelectorOne() public pure returns (bytes4 selector) {
+    function getSelector() public pure returns (bytes4 selector) {
         selector = bytes4(keccak256(bytes("transfer(address,uint256)")));
 
         return selector;
+    }
+
+    function getDataToCall(address someAddress, uint256 amount) public pure returns (bytes memory) {
+        return abi.encodeWithSelector(getSelector(), someAddress, amount);
+    }
+
+    function callFunction(address someAddress, uint56 amount) public returns (bytes memory, bool, string memory) {
+        /// @dev returnData will be return of called function, in this case message from transfer
+        (bool success, bytes memory returnData) = address(this).call(getDataToCall(someAddress, amount));
+
+        string memory our = string(returnData);
+        return (returnData, success, our);
+    }
+
+    /// @dev example for call by function signature
+    function callFunctionSignature(address someAddress, uint56 amount) public returns (bytes memory, bool, string memory) {
+        /// @dev returnData will be return of called function, in this case message from transfer
+        (bool success, bytes memory returnData) = address(this).call(abi.encodeWithSignature("transfer(address,uint256)", someAddress, amount));
+
+        string memory our = string(returnData);
+        return (returnData, success, our);
     }
 }
